@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:dt="http://www.thymeleaf.org/dandelion/datatables">
+<head> 
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<style>
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+	<h1></h1>
+  
+   
+    
+  
+<h2>Display Multiples of 3,7,21 with Custom Labels Between given range of numbers</h2>
+ <form id="numbersFormId" name="numbersForm" action="#" th:action="@{/display}" th:object="${numbers}" method="post">
+	<table>
+	  <tr>
+	    <th>Number One (1-200)</th>
+	    <th>Number Two (1-200)</th>
+	    <th>Action</th>
+	  </tr>
+	  <tr>
+	    <td><input id="numberOne" type="number" th:field="*{numberOne}" max="200" min="1" required="required"/></td>
+	    <td><input id="numberTwo" type="number" th:field="*{numberTwo}" max="200" min="1" required="required"/></td>
+	    <td><input type="submit" value="Display" /> <input type="reset" value="Reset"/></td>
+	  </tr>
+	</table>
+  </form>
+  	<table>	  
+	   <tr>
+	    <th style="text-align: center">Results provided by an API Deployed on Mulesoft CloudHub is serving you the below response</th>
+	    <th style="text-align: center">Example API usage: http://multiplescalculator.cloudhub.io/api/calculateMultiples?number1=22&amp;number2=33</th>
+	    <th style="text-align: center">API returns data in JSON format</th>
+	    <th style="text-align: center">Results can be reversed by clicking on header of KEY or VALUE(Results Table)</th>
+	  </tr>
+	</table>
+  
+  
+	  <div class="span12">
+	    <table id="myTableId" dt:table="true">
+	        <thead>
+	            <tr>
+	                <th>Key</th>
+	                <th>Value</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	             <tr th:each="resultObject : ${numbersList}">
+	                <td th:text="${resultObject.key}"></td>
+	                <td th:text="${resultObject.value}"></td>
+	            </tr>
+	        </tbody>
+	    </table>
+	</div>
+</body>
+</html>
