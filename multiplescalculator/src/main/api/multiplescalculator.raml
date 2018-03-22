@@ -1,0 +1,51 @@
+#%RAML 1.0
+baseUri: http://multiplescalculator.cloudhub.io/api
+version: v1
+title: Calculate Multiples of 3,7,21 between given range of numbers
+mediaType: application/json
+protocols:
+  - HTTP
+/calculateMultiples:
+  displayName: /calculateMultiples  
+  get:
+    description: Calculate Multiples of 3,7,21 between given range of numbers and form different labels
+    queryParameters: 
+      number1:
+        type: integer
+        required: true
+        minimum: 1
+        maximum: 200
+      number2:
+        type: integer
+        required: true
+        minimum: 1
+        maximum: 200      
+    responses:
+      '400':
+        description: display the error message incase of wrong inputs
+        body: 
+          application/json:
+            example:
+              {
+                "Bad Input":"input numbers must be integers and must be within 1 and 200"
+              }                
+      '200':
+        body:
+          application/json:
+            example:
+              {  
+                "result":{  
+                    "18":"ME",
+                    "21":"MS3 and ME",
+                    "6":"ME",
+                    "7":"MS3",
+                    "24":"ME",
+                    "9":"ME",
+                    "27":"ME",
+                    "12":"ME",
+                    "28":"MS3",
+                    "14":"MS3",
+                    "15":"ME"
+                }
+              }
+    
